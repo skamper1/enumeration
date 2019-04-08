@@ -1,0 +1,441 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     16384,        432]
+NotebookOptionsPosition[     16065,        417]
+NotebookOutlinePosition[     16441,        433]
+CellTagsIndexPosition[     16398,        430]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Needs", "[", 
+   RowBox[{"\"\<ea18GF`\>\"", ",", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<ea18GF.m\>\""}], 
+      "}"}], "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Needs", "[", 
+   RowBox[{"\"\<eaDataStructure`\>\"", ",", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+       "\"\<eaDataStructure.m\>\""}], "}"}], "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Needs", "[", 
+   RowBox[{"\"\<subgraphTemp`\>\"", ",", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+       "\"\<subgraphTemp.m\>\""}], "}"}], "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Needs", "[", 
+   RowBox[{"\"\<eaEnumeration`\>\"", ",", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+       "\"\<eaEnumeration.m\>\""}], "}"}], "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"displayDials", "[", "graphData_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "dials", ",", "currentDialPositionAndLocalisedBans", ",", "adjLists", 
+       ",", "connectingGroup", ",", "graphsMade", ",", 
+       "oldCurrentDialPosition"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "dials", ",", "currentDialPositionAndLocalisedBans", ",", "adjLists", 
+         ",", "connectingGroup", ",", "oldCurrentDialPosition"}], "}"}], "=", 
+       RowBox[{"connectionsPossible", "[", "graphData", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"graphsMade", "=", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"connectVertex", "[", 
+          RowBox[{"graphData", ",", "connectingGroup", ",", 
+           RowBox[{"dials", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], ",", 
+           RowBox[{"currentDialPositionAndLocalisedBans", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], ",", 
+           RowBox[{"adjLists", "[", 
+            RowBox[{"[", "i", "]"}], "]"}]}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "1", ",", 
+           RowBox[{"Length", "[", "dials", "]"}]}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", 
+       RowBox[{"Row", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Column", "[", 
+            RowBox[{
+             RowBox[{"Table", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"Length", "[", 
+                 RowBox[{"graphsMade", "[", 
+                  RowBox[{"[", "i", "]"}], "]"}], "]"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"i", ",", "1", ",", 
+                 RowBox[{"Length", "[", "dials", "]"}]}], "}"}]}], "]"}], ",", 
+             RowBox[{"Spacings", "\[Rule]", "1"}]}], "]"}], ",", 
+           RowBox[{"Column", "[", 
+            RowBox[{"dials", ",", 
+             RowBox[{"Spacings", "\[Rule]", "1"}]}], "]"}], ",", 
+           RowBox[{"Column", "[", 
+            RowBox[{"adjLists", ",", 
+             RowBox[{"Spacings", "\[Rule]", "1"}]}], "]"}]}], "}"}], ",", 
+         "\"\<    \>\""}], "]"}], "]"}]}]}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"findParent", "[", "vc_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "edge", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"MemberQ", "[", 
+         RowBox[{"edges", ",", 
+          RowBox[{"_", "\[UndirectedEdge]", "vc"}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"edge", "=", 
+          RowBox[{"FirstCase", "[", 
+           RowBox[{"edges", ",", 
+            RowBox[{"_", "\[UndirectedEdge]", "vc"}]}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Return", "[", 
+          RowBox[{"edge", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"Return", "[", "0", "]"}], ";"}]}], "\[IndentingNewLine]", 
+       "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"findChildren", "[", "vp_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "allEdges", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"MemberQ", "[", 
+         RowBox[{"edges", ",", 
+          RowBox[{"vp", "\[UndirectedEdge]", "_"}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"allEdges", "=", 
+          RowBox[{"Cases", "[", 
+           RowBox[{"edges", ",", 
+            RowBox[{"vp", "\[UndirectedEdge]", "_"}]}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Return", "[", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"aei", "[", 
+             RowBox[{"[", "2", "]"}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"aei", ",", "allEdges"}], "}"}]}], "]"}], "]"}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"Return", "[", 
+          RowBox[{"{", "}"}], "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], 
+      ";"}]}], "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"findAncestors", "[", "vc_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"ancestors", "=", 
+        RowBox[{"{", "}"}]}], ",", 
+       RowBox[{"ayoung", "=", "vc"}], ",", "aold"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"While", "[", 
+       RowBox[{
+        RowBox[{"ayoung", "\[NotEqual]", "0"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"aold", "=", 
+          RowBox[{"findParent", "[", "ayoung", "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"PrependTo", "[", 
+          RowBox[{"ancestors", ",", "ayoung"}], "]"}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"ayoung", "=", "aold"}], ";"}]}], "\[IndentingNewLine]", 
+       "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Return", "[", "ancestors", "]"}], ";"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"colouredVertexNumber", "[", "v_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"s", "=", "0.01"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", 
+      RowBox[{"Graphics", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"colour", "[", "v", "]"}], ",", 
+          RowBox[{"Rectangle", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", "0"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"s", ",", "s"}], "}"}]}], "]"}], ",", "Black", ",", 
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{
+              RowBox[{"ToString", "[", "v", "]"}], ",", 
+              RowBox[{"FontSize", "\[Rule]", "15"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"s", "/", "2"}], ",", 
+              RowBox[{"s", "/", "2"}]}], "}"}]}], "]"}]}], "}"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "50"}]}], "]"}], "]"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"colouredVertexNumberTable", "[", "t_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"Return", "[", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"colouredVertexNumber", "[", "ti", "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"ti", ",", "t"}], "}"}]}], "]"}], "]"}], ";"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"colour", "[", "v_", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "p", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"p", "=", 
+        RowBox[{"Position", "[", 
+         RowBox[{"vStyles", ",", "v"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Length", "[", "p", "]"}], ">", "0"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"p", "=", 
+           RowBox[{
+            RowBox[{"Last", "[", "p", "]"}], "[", 
+            RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Return", "[", 
+           RowBox[{
+            RowBox[{"vStyles", "[", 
+             RowBox[{"[", "p", "]"}], "]"}], "[", 
+            RowBox[{"[", "2", "]"}], "]"}], "]"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Return", "[", "LightBlue", "]"}], ";"}]}], 
+        "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}],
+    ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"vMin", "=", "10"}], ";", 
+  RowBox[{"vMax", "=", "20"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PopupMenu", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "vx", "]"}], ",", 
+   RowBox[{"Range", "[", 
+    RowBox[{"vMin", ",", "vMax"}], "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Button", "[", 
+  RowBox[{"\"\<getPairs\>\"", ",", 
+   RowBox[{"Dynamic", "[", 
+    RowBox[{
+     RowBox[{"px", "=", 
+      RowBox[{"getPairs", "[", "vx", "]"}]}], ";", 
+     RowBox[{"pxi", "=", 
+      RowBox[{"px", "[", 
+       RowBox[{"[", "1", "]"}], "]"}]}]}], "]"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Dynamic", "[", 
+  RowBox[{"PopupMenu", "[", 
+   RowBox[{
+    RowBox[{"Dynamic", "[", "pxi", "]"}], ",", "px"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Dynamic", "[", 
+   RowBox[{"Grid", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<V\>\"", ",", " ", "\"\<pairs\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"vx", ",", "pxi"}], "}"}]}], "}"}], "]"}], "]"}], 
+  "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.6954713836708083`*^9, 3.69547138411339*^9}, {
+   3.6956382530640106`*^9, 3.6956383036557236`*^9}, {3.6956386458075557`*^9, 
+   3.695638656165691*^9}, 3.695654735506507*^9, {3.6956547670070543`*^9, 
+   3.6956547842266207`*^9}, {3.69565485164322*^9, 3.6956548938703456`*^9}, {
+   3.6957175064722843`*^9, 3.695717534254347*^9}, {3.6957201868154926`*^9, 
+   3.695720187002057*^9}, {3.6957217718419485`*^9, 3.6957217721252265`*^9}, {
+   3.6957236983896914`*^9, 3.695723698599225*^9}, {3.6957238890531387`*^9, 
+   3.695723889263997*^9}, {3.6957239312328744`*^9, 3.6957239313196926`*^9}, {
+   3.695724016453929*^9, 3.6957240681267753`*^9}, {3.695753674314521*^9, 
+   3.6957536816574726`*^9}, {3.695753711828685*^9, 3.6957537433381753`*^9}, {
+   3.6960788381077127`*^9, 3.6960788580984116`*^9}, {3.6963454497920694`*^9, 
+   3.696345450015346*^9}, {3.6963686865139933`*^9, 3.6963687106453104`*^9}, {
+   3.6963687698795977`*^9, 3.6963687803387976`*^9}, {3.696369800136039*^9, 
+   3.6963698321245627`*^9}, 3.696369956010787*^9, {3.6969711748290625`*^9, 
+   3.6969711748970737`*^9}, {3.697167851975294*^9, 3.697167866407856*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"getGraphsWanted", "[", 
+   RowBox[{"vx", ",", "pxi", "\[InvisibleSpace]", ",", 
+    RowBox[{"{", 
+     RowBox[{"-", "1"}], "}"}]}], "]"}], 
+  "\[InvisibleSpace]"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Column", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Row", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"\"\<parent: \>\"", ",", 
+          RowBox[{"colouredVertexNumber", "[", 
+           RowBox[{"findParent", "[", "gi", "]"}], "]"}], ",", 
+          "\"\<children: \>\"", ",", 
+          RowBox[{"Row", "[", 
+           RowBox[{
+            RowBox[{"colouredVertexNumberTable", "[", 
+             RowBox[{"findChildren", "[", "gi", "]"}], "]"}], ",", 
+            "\"\<  * \>\""}], "]"}]}], "}"}], ",", "\"\<     \>\""}], "]"}], 
+      ",", "\[IndentingNewLine]", 
+      RowBox[{"Row", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Button", "[", 
+           RowBox[{
+            RowBox[{"\"\<jump to parent \>\"", "<>", 
+             RowBox[{"ToString", "[", 
+              RowBox[{"findParent", "[", "gi", "]"}], "]"}]}], ",", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"findParent", "[", "gi", "]"}], ">", "0"}], ",", 
+              RowBox[{"gi", "=", 
+               RowBox[{"findParent", "[", "gi", "]"}]}]}], "]"}]}], "]"}], 
+          ",", 
+          RowBox[{"SetterBar", "[", 
+           RowBox[{
+            RowBox[{"Dynamic", "[", "gi", "]"}], ",", 
+            RowBox[{"findChildren", "[", "gi", "]"}], ",", 
+            RowBox[{"Appearance", "\[Rule]", 
+             RowBox[{"{", 
+              RowBox[{"\"\<DialogBox\>\"", ",", "Large"}], "}"}]}]}], "]"}], 
+          ",", 
+          RowBox[{"SetterBar", "[", 
+           RowBox[{
+            RowBox[{"Dynamic", "[", "gi", "]"}], ",", 
+            RowBox[{"findAncestors", "[", "gi", "]"}], ",", 
+            RowBox[{"Appearance", "\[Rule]", "\"\<Vertical\>\""}]}], "]"}], 
+          ",", 
+          RowBox[{"Column", "[", 
+           RowBox[{"colouredVertexNumberTable", "[", 
+            RowBox[{"findAncestors", "[", "gi", "]"}], "]"}], "]"}]}], "}"}], 
+        "\"\<     \>\""}], "]"}], ",", 
+      RowBox[{"Row", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"colouredVertexNumber", "[", "gi", "]"}], ",", 
+         RowBox[{"makeSubgraph", "[", 
+          RowBox[{
+           RowBox[{"graphsWanted", "[", 
+            RowBox[{"[", "gi", "]"}], "]"}], "[", 
+           RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], "]"}], ",", 
+      RowBox[{"showGraph", "[", 
+       RowBox[{
+        RowBox[{"graphsWanted", "[", 
+         RowBox[{"[", "gi", "]"}], "]"}], "[", 
+        RowBox[{"[", "2", "]"}], "]"}], "]"}], ",", 
+      RowBox[{"displayDials", "[", 
+       RowBox[{
+        RowBox[{"graphsWanted", "[", 
+         RowBox[{"[", "gi", "]"}], "]"}], "[", 
+        RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"gi", ",", "1", ",", 
+     RowBox[{"Length", "[", "graphsWanted", "]"}], ",", "1"}], "}"}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.695720075738103*^9, 3.695720167440094*^9}, {
+  3.6957211262175508`*^9, 3.6957212252088656`*^9}, {3.6957214805494037`*^9, 
+  3.6957215037391057`*^9}, {3.695721739916132*^9, 3.6957217487137437`*^9}, {
+  3.6957237074941816`*^9, 3.6957237130865417`*^9}, {3.695723967592597*^9, 
+  3.695723972350665*^9}, {3.6957240520650597`*^9, 3.695724056303137*^9}, {
+  3.695724090079471*^9, 3.695724113655836*^9}, {3.695735419361004*^9, 
+  3.6957354534257107`*^9}, {3.6957539010058603`*^9, 3.695753920995403*^9}, {
+  3.6957539884964066`*^9, 3.695753999665675*^9}, {3.69634542503004*^9, 
+  3.6963454255856566`*^9}, {3.6963454875135193`*^9, 3.696345507770315*^9}, {
+  3.696345565177416*^9, 3.696345569430236*^9}}]
+},
+WindowSize->{1536, 781},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+Magnification:>1.15 Inherited,
+FrontEndVersion->"10.3 for Microsoft Windows (64-bit) (October 9, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 11638, 302, 1223, "Input"],
+Cell[12199, 324, 3862, 91, 167, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)

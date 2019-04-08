@@ -1,0 +1,107 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3047,         98]
+NotebookOptionsPosition[      2804,         85]
+NotebookOutlinePosition[      3149,        100]
+CellTagsIndexPosition[      3106,         97]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Needs", "[", 
+   RowBox[{"\"\<isoDisplay`\>\"", ",", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<isoDisplay.m\>\""}],
+       "}"}], "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Needs", "[", 
+   RowBox[{"\"\<ea18GF`\>\"", ",", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<ea18GF.m\>\""}], 
+      "}"}], "]"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"vMin", "=", "10"}], ";", 
+  RowBox[{"vMax", "=", "20"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PopupMenu", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "vx", "]"}], ",", 
+   RowBox[{"Range", "[", 
+    RowBox[{"vMin", ",", "vMax"}], "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Button", "[", 
+  RowBox[{"\"\<getPairs\>\"", ",", 
+   RowBox[{"Dynamic", "[", 
+    RowBox[{
+     RowBox[{"px", "=", 
+      RowBox[{"getPairs", "[", "vx", "]"}]}], ";", 
+     RowBox[{"pxi", "=", 
+      RowBox[{"px", "[", 
+       RowBox[{"[", "1", "]"}], "]"}]}]}], "]"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Dynamic", "[", 
+  RowBox[{"PopupMenu", "[", 
+   RowBox[{
+    RowBox[{"Dynamic", "[", "pxi", "]"}], ",", "px"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Dynamic", "[", 
+  RowBox[{"Grid", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\"\<V\>\"", ",", " ", "\"\<pairs\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"vx", ",", "pxi"}], "}"}]}], "}"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Button", "[", 
+  RowBox[{"\"\<get isoDisplay VALID\>\"", ",", 
+   RowBox[{
+    RowBox[{"disp", "=", 
+     RowBox[{"isoDisplay", "[", 
+      RowBox[{"vx", ",", "pxi"}], "]"}]}], ";", 
+    RowBox[{"disp2", "=", 
+     RowBox[{"isoDisplayV", "[", 
+      RowBox[{"vx", ",", "pxi"}], "]"}]}]}], ",", 
+   RowBox[{"Method", "\[Rule]", "\"\<Queued\>\""}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Dynamic", "[", "disp2", "]"}]}], "Input",
+ CellChangeTimes->{{3.6971833938737383`*^9, 3.697183432967965*^9}, {
+  3.6971853662217054`*^9, 3.697185435930911*^9}, {3.6975095260694447`*^9, 
+  3.6975095351750555`*^9}}]
+},
+WindowSize->{1536, 781},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"10.3 for Microsoft Windows (64-bit) (October 9, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2242, 63, 192, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
